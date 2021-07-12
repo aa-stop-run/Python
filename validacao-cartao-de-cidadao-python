@@ -1,0 +1,88 @@
+valor = {'A': 10,
+         'B': 11,
+         'C': 12,
+         'D': 13,
+         'E': 14,
+         'F': 15,
+         'G': 16,
+         'H': 17,
+         'I': 18,
+         'J': 19,
+         'K': 20,
+         'L': 21,
+         'M': 22,
+         'N': 23,
+         'O': 24,
+         'P': 25,
+         'Q': 26,
+         'R': 27,
+         'S': 28,
+         'T': 29,
+         'U': 30,
+         'V': 31,
+         'W': 32,
+         'X': 33,
+         'Y': 34,
+         'Z': 35}
+
+while True:
+    cc = input('Qual é o número do cartão do cidadão? ')
+    # retira os espaços
+    cc = cc.strip()
+    q_carateres = len(cc)
+    # verifica se a string tem 12 caracteres alfanuméricos
+    if q_carateres != 12:
+        print('Número de CC inválido. Introduza novamente.')
+        continue
+    lista_num = []
+    # verifica se os 9 primeiros caracteres são numéricos
+    for num in cc[0:9]:
+        if not num.isnumeric():
+            print('Número de CC inválido. Introduza novamente.')
+            break
+        else:
+            lista_num.append(num)
+
+    # verifica se o 10 e 11 caracteres são alfa
+    for char in cc[9:11]:
+        if not char.isalpha():
+            print('Número de CC inválido. Introduza novamente.')
+            break
+        else:
+            letra = char.upper()
+            for i in valor:
+                if letra == i:
+                    lista_num.append(valor[i])
+
+    # verifica se o último caracter é numérico
+    for num in cc[11:]:
+        if not num.isnumeric():
+            print('Número de CC inválido. Introduza novamente.')
+            break
+        else:
+            lista_num.append(num)
+
+    # vai buscar os números para multiplicar
+    total = 0
+    for conta in lista_num[::2]:
+        verifica_10 = int(conta) * 2
+        if verifica_10 > 10:
+            verifica_10 = verifica_10 - 9
+        total = verifica_10 + total
+
+    # vai buscar os restantes números para somar
+    for conta in lista_num[::-2]:
+        total = total + int(conta)
+
+    # cálculo do resto da divisão - se for = 0, CC válido
+    resultado = total % 10
+
+    if resultado == 0:
+        print(f'O CC {cc} é válido.')
+    else:
+        print(f'O CC {cc} é inválido.')
+
+    exit = input('Pretende verificar outro número? [S] ou [N] ')
+
+    if exit == 'N' or exit == 'n':
+        break
