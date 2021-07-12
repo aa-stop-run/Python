@@ -1,3 +1,47 @@
+# Como validar um cartão do cidadão
+# Formato: DDDDDDDD C AAT
+# D- Número de Identificação Civil [0.. 9]
+# C – Check Digit do Número de Identificação Civil [0.. 9]
+# A – Versão [A.. Z, 0.. 9]
+# T – Check Digit Número de Documento [0.. 9]
+# Letra Valor
+# A 10
+# B 11
+# C 12
+# D 13
+# E 14
+# F 15
+# G 16
+# H 17
+# I 18
+# J 19
+# K 20
+# L 21
+# M 22
+# N 23
+# O 24
+# P 25
+# Q 26
+# R 27
+# S 28
+# T 29
+# U 30
+# V 31
+# W 32
+# X 33
+# Y 34
+# Z 35
+# A fórmula de validação efectua a verificação usando o número de documento completo. O
+# número de documento tem de passar os seguintes testes:
+# 1. Efectuando uma contagem da direita para a esquerda do número de documento,
+# duplicar o valor de cada 2º elemento, sendo que as letras deverão ser substituídas de
+# acordo com a tabela de conversão presente neste documento;
+# 2. No caso do resultado da duplicação ser igual ou superior a 10, subtrair 9 ao seu valor;
+# 3. Somar a totalidade dos valores obtidos;
+# 4. Ao valor obtido, deve-se calcular o resto da sua divisão por 10, sendo que se esse
+# valor for 0 o número de documento é válido.
+
+
 valor = {'A': 10,
          'B': 11,
          'C': 12,
